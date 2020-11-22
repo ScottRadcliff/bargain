@@ -1,21 +1,13 @@
 # Bargain
 
-**TODO: Add description**
+Bargain is a Markdown parsing library for Elixir. It allows you to take markdown and return valid HTML.
 
-## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `bargain` to your list of dependencies in `mix.exs`:
+### Features
 
-```elixir
-def deps do
-  [
-    {:bargain, "~> 0.1.0"}
-  ]
-end
-```
+**Parse the following**
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/bargain](https://hexdocs.pm/bargain).
+- [ ] Heading
+- [ ] Paragraphs
+- [ ] Links
 
