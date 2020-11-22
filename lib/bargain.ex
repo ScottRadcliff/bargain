@@ -3,16 +3,20 @@ defmodule Bargain do
   Documentation for `Bargain`.
   """
 
-  @doc """
-  Hello world.
+  def generate(text) do
+    case String.starts_with?(text, "#") do
+      true -> {:ok, create_heading(text)}
+    end
+  end
 
-  ## Examples
+  defp create_heading(text) do
+    "<h1>#{heading_text(text)}</h1>"
+  end
 
-      iex> Bargain.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  defp heading_text(text) do
+    String.trim(text)
+    |> String.split
+    |> tl
+    |> Enum.join(" ")
   end
 end
