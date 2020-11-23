@@ -10,13 +10,13 @@ defmodule Bargain do
   end
 
   defp create_heading(text) do
-    "<h1>#{heading_text(text)}</h1>"
+    [hd | tl] = heading_text(text)
+    level = String.length(hd)
+    "<h#{level}>#{tl}</h#{level}>"
   end
 
   defp heading_text(text) do
     String.trim(text)
     |> String.split
-    |> tl
-    |> Enum.join(" ")
   end
 end
