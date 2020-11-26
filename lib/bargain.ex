@@ -4,9 +4,17 @@ defmodule Bargain do
   """
 
   def generate(text) do
-    case String.starts_with?(text, "#") do
-      true -> {:ok, create_heading(text)}
-      false -> {:ok, create_paragaph(text)}
+    parsed  = Enum.map(String.split(text, "\n"), fn x -> 
+      String.trim(x)
+      |> parse
+    end)
+    {:ok, Enum.join(parsed)}
+  end
+
+  defp parse(text) do
+    cond do
+      String.match?(text, ~r/^\#/)       -> create_heading(text)
+      String.match?(text, ~r/^[a-zA-Z]/) -> create_paragaph(text)
     end
   end
   
