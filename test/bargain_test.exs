@@ -10,4 +10,8 @@ defmodule BargainTest do
     assert Bargain.generate("##### Heading")            == {:ok,"<h5>Heading</h5>"}
     assert Bargain.generate("###### Heading")           == {:ok,"<h6>Heading</h6>"}
   end
+
+  test "Generates paragraphs" do
+    assert Bargain.generate("This is a paragraph") == {:ok, "<p>This is a paragraph</p>"}
+  end
 end

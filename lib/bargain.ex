@@ -6,7 +6,12 @@ defmodule Bargain do
   def generate(text) do
     case String.starts_with?(text, "#") do
       true -> {:ok, create_heading(text)}
+      false -> {:ok, create_paragaph(text)}
     end
+  end
+  
+  defp create_paragaph(text) do
+    "<p>#{text}</p>"
   end
 
   defp create_heading(text) do
