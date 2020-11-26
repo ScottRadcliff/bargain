@@ -13,5 +13,14 @@ defmodule BargainTest do
 
   test "Generates paragraphs" do
     assert Bargain.generate("This is a paragraph") == {:ok, "<p>This is a paragraph</p>"}
+    assert Bargain.generate("This is a paragraph") == {:ok, "<p>This is a paragraph</p>"}
+    assert Bargain.generate("This is a paragraph\nAnd another") == {:ok, "<p>This is a paragraph</p><p>And another</p>"}
+  end
+
+  test "Generates a heading and paragraphs" do
+    test_string = "## This is a heading
+    With a paragraph
+    and another paragraph"
+    assert Bargain.generate(test_string) == {:ok, "<h2>This is a heading</h2><p>With a paragraph</p><p>and another paragraph</p>"}
   end
 end
