@@ -12,7 +12,7 @@ defmodule Bargain do
   defp create_heading(text) do
     [hd | tl] = heading_text(text)
     level = String.length(hd)
-    "<h#{level}>#{tl}</h#{level}>"
+    "<h#{level}>#{Enum.join(tl, " ")}</h#{level}>"
   end
 
   defp heading_text(text) do
