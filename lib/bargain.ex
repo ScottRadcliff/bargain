@@ -14,7 +14,7 @@ defmodule Bargain do
   defp parse(text) do
     cond do
       String.match?(text, ~r/^\#/)       -> create_heading(text)
-      String.match?(text, ~r/^[a-zA-Z]/) -> create_paragaph(text)
+      String.match?(text, ~r/^[[:alpha:]]/) -> create_paragaph(text)
     end
   end
   
