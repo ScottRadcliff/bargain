@@ -23,4 +23,8 @@ defmodule BargainTest do
     and another paragraph"
     assert Bargain.generate(test_string) == {:ok, "<h2>This is a heading</h2><p>With a paragraph</p><p>and another paragraph</p>"}
   end
+
+  test "Generates hyperlinks" do
+    assert Bargain.generate("This is a paragraph and a [link](http://google.com)") == {:ok, "<p>This is a paragraph and a <a href='http://google.com'>link</a></p>"}
+  end
 end

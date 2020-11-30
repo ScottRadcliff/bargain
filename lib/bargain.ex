@@ -13,13 +13,21 @@ defmodule Bargain do
 
   defp parse(text) do
     cond do
-      String.match?(text, ~r/^\#/)       -> create_heading(text)
+      String.match?(text, ~r/^\#/)          -> create_heading(text)
       String.match?(text, ~r/^[[:alpha:]]/) -> create_paragaph(text)
     end
   end
   
   defp create_paragaph(text) do
+    new_text = String.replace(text, ~r/\[\w+\]\(.+\)/, fn x -> convert_hyperlink(x) end)
+    # find hyperlink syntax
+    # replace
     "<p>#{text}</p>"
+  end
+
+  defp convert_hyperlink(text) do
+    captures = Regex.named_captures(~r/\[(?<text>\w+)\]\((?<url>.+)\)/, text)
+    IO.inspect(captures, label: "convert")
   end
 
   defp create_heading(text) do
