@@ -5,17 +5,21 @@ defmodule Hyperlink do
   # Takes a string, converts markdown to HTML link
   # syntax and returns the string
   def convert(string) do
-    link = capture_link_segments(string)
+    links = capture_link_segments(string)
            |> build_link
-    Regex.replace(~r/\[.+\]\(.+\)/, string, link)
+    str = Enum.map_join(links, fn x -> 
+      Regex.replace(~r/\[.+\]\(.+\)/, string, x)
+    end)
   end
 
-  defp capture_link_segments(markdown) do
-    Regex.named_captures(~r/\[(?<text>\w+)\]\((?<url>.+)\)/, markdown)
+  def capture_link_segments(markdown) do
+    Regex.scan(~r/\[(?<text>\w+)\]\((?<url>http\:\/\/\w+\.\w+)\)/, markdown)
   end
 
-  defp build_link(captures_map) do
-    "<a href='#{captures_map["url"]}'>#{captures_map["text"]}</a>"
+  defp build_link(captures) do
+    Enum.map(captures, fn x -> 
+      "<a href='#{Enum.at(x, 2)}'>#{Enum.at(x, 1)}</a>"
+    end)
   end 
 end
 
