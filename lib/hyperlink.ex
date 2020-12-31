@@ -8,8 +8,20 @@ defmodule Hyperlink do
     links = capture_link_segments(string)
            |> build_link
     str = Enum.map_join(links, fn x -> 
-      Regex.replace(~r/\[.+\]\(.+\)/, string, x)
+      replace_link(string, x)
     end)
+  end
+
+  defp replace_link(markdown, links) when length(links) > 0 do
+    IO.inspect(markdown, label: "")
+    IO.inspect(links, label: "")
+    link = List.pop_at(links, 0)
+    replaced = Regex.replace(~r/\[\w+\]\(http:\/\/\w+\.com\)/, markdown, elem(link,0), global: false)
+    # replace_link(replaced, elem(link,1))
+  end
+
+  defp replace_link(markdown, link) do
+    Regex.replace(~r/\[\w+\]\(http:\/\/\w+\.com\)/, markdown, link, global: false)
   end
 
   def capture_link_segments(markdown) do
