@@ -19,24 +19,7 @@ defmodule Bargain do
   end
   
   defp create_paragaph(text) do
-    # new_text = String.replace(text, ~r/\[\w+\]\(.+\)/, fn x -> convert_hyperlink(x) end)
-    String.replace(text, ~r/\[\w+\]/, fn x -> "<a href='/'>#{convert_hyperlink_text(x)}</a>" end)
-    String.replace(text, ~r/\(.+\)/, fn x -> "<a href='/'>#{convert_hyperlink(x)}</a>" end)
-    IO.puts(text)
-    # find hyperlink syntax
-    # replace
-    "<p>#{text}</p>"
-  end
-
-  defp convert_hyperlink(text) do
-    url = Regex.named_captures(~r/\((?<text>.+)\)/, text)
-    url["text"]
-  end
-
-  defp convert_hyperlink_text(text) do
-    # captures = Regex.named_captures(~r/\[(?<text>\w+)\]\((?<url>.+)\)/, text)
-    title = Regex.named_captures(~r/\[(?<text>\w+)\]/, text)
-    title["text"]
+    "<p>#{Hyperlink.convert(text)}</p>"
   end
 
   defp create_heading(text) do
