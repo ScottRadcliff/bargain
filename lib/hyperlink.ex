@@ -8,7 +8,7 @@ defmodule Hyperlink do
     links = capture_link_segments(string)
            |> build_link
 
-    replace_link(links, string)
+    {:ok, replace_link(links, string)}
   end
 
   defp replace_link([head | tail], text) do
@@ -19,7 +19,7 @@ defmodule Hyperlink do
     string
   end
 
-  def capture_link_segments(markdown) do
+  defp capture_link_segments(markdown) do
     Regex.scan(~r/\[(?<text>\w+)\]\((?<url>http\:\/\/\w+\.\w+)\)/, markdown)
   end
 
