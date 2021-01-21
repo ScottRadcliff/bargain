@@ -31,5 +31,10 @@ defmodule HyperlinkTest do
     test_string = "hello this is a [link to something](https://google.engineer) and [this is another](http://google.com)"
     assert Hyperlink.convert(test_string) ==  {:ok, "hello this is a <a href='https://google.engineer'>link to something</a> and <a href='http://google.com'>this is another</a>"}
   end
+
+  test "subdomains" do
+    test_string = "hello this is a [link to something](https://sub.google.engineer) and [this is another](http://google.com)"
+    assert Hyperlink.convert(test_string) ==  {:ok, "hello this is a <a href='https://sub.google.engineer'>link to something</a> and <a href='http://google.com'>this is another</a>"}
+  end
 end
 

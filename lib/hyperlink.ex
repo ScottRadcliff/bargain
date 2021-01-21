@@ -12,7 +12,7 @@ defmodule Hyperlink do
   end
 
   defp replace_link([head | tail], text) do
-    replace_link(tail, String.replace(text, ~r/\[[\w\s]+\]\(http[s]?:\/\/\w+\.\w+\)/, head, global: false))
+    replace_link(tail, String.replace(text, ~r/\[[\w\s]+\]\(http[s]?:\/\/\w+[\.\w+]+\.\w+\)/, head, global: false))
   end
 
   defp replace_link([], string) do
@@ -20,7 +20,7 @@ defmodule Hyperlink do
   end
 
   defp capture_link_segments(markdown) do
-    Regex.scan(~r/\[(?<text>[\w\s]+)\]\((?<url>http[s]?\:\/\/\w+\.\w+)\)/, markdown)
+    Regex.scan(~r/\[(?<text>[\w\.?\s]+)\]\((?<url>http[s]?\:\/\/\w+[\.\w+]+\w+)\)/, markdown)
   end
 
   defp build_link(captures) do
