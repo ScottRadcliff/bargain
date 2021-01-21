@@ -8,13 +8,11 @@ defmodule Hyperlink do
     links = capture_link_segments(string)
            |> build_link
 
-    IO.inspect(links, label: "links")
-
     {:ok, replace_link(links, string)}
   end
 
   defp replace_link([head | tail], text) do
-    replace_link(tail, String.replace(text, ~r/\[[\w\s]+\]\(http[s]?:\/\/\w+\.com\)/, head, global: false))
+    replace_link(tail, String.replace(text, ~r/\[[\w\s]+\]\(http[s]?:\/\/\w+\.\w+\)/, head, global: false))
   end
 
   defp replace_link([], string) do

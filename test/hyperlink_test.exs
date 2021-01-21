@@ -21,5 +21,15 @@ defmodule HyperlinkTest do
     test_string = "hello this is a [link to something](https://google.com) and [this is another](http://google.com)"
     assert Hyperlink.convert(test_string) ==  {:ok, "hello this is a <a href='https://google.com'>link to something</a> and <a href='http://google.com'>this is another</a>"}
   end
+
+  test ".net domain" do
+    test_string = "hello this is a [link to something](https://google.net) and [this is another](http://google.com)"
+    assert Hyperlink.convert(test_string) ==  {:ok, "hello this is a <a href='https://google.net'>link to something</a> and <a href='http://google.com'>this is another</a>"}
+  end
+
+  test ".engineer domain" do
+    test_string = "hello this is a [link to something](https://google.engineer) and [this is another](http://google.com)"
+    assert Hyperlink.convert(test_string) ==  {:ok, "hello this is a <a href='https://google.engineer'>link to something</a> and <a href='http://google.com'>this is another</a>"}
+  end
 end
 
