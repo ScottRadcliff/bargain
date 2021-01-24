@@ -20,6 +20,8 @@ defmodule Bargain do
   
   defp create_paragaph(text) do
     "<p>#{elem(Hyperlink.convert(text),1)}</p>"
+    |> Italics.convert
+    |> elem(1)
   end
 
   defp create_heading(text) do

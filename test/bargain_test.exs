@@ -27,4 +27,10 @@ defmodule BargainTest do
   test "Generates hyperlinks" do
     assert Bargain.generate("This is a paragraph and a [link](http://google.com)") == {:ok, "<p>This is a paragraph and a <a href='http://google.com'>link</a></p>"}
   end
+
+  test "italicizes text" do
+    assert Bargain.generate("there is some _text_ here") == {:ok, "<p>there is some <em>text</em> here</p>"}
+    assert Bargain.generate("there is some _text_ here and _here too_") == {:ok, "<p>there is some <em>text</em> here and <em>here too</em></p>"}
+    assert Bargain.generate("there _is some text here and here too_") == {:ok, "<p>there <em>is some text here and here too</em></p>"}
+  end
 end
