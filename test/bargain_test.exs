@@ -33,4 +33,13 @@ defmodule BargainTest do
     assert Bargain.generate("there is some _text_ here and _here too_") == {:ok, "<p>there is some <em>text</em> here and <em>here too</em></p>"}
     assert Bargain.generate("there _is some text here and here too_") == {:ok, "<p>there <em>is some text here and here too</em></p>"}
   end
+
+  test "bold text" do
+    assert Bargain.generate("there is some **text** here") == {:ok, "<p>there is some <strong>text</strong> here</p>"}
+    assert Bargain.generate("there is some **text** here and **also here**") == {:ok, "<p>there is some <strong>text</strong> here and <strong>also here</strong></p>"}
+  end
+
+  test "blockquote" do
+    assert Bargain.generate("> there is some text here") == {:ok, "<p><blockquote>there is some text here</blockquote></p>"}
+  end
 end

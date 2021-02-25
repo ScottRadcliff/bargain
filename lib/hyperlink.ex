@@ -4,7 +4,7 @@ defmodule Hyperlink do
   #
   # Takes a string, converts markdown to HTML link
   # syntax and returns the string
-  def convert(string) do
+  def convert({:ok, string}) do
     links = capture_link_segments(string)
            |> build_link
 

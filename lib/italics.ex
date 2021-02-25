@@ -1,5 +1,5 @@
 defmodule Italics do
-  def convert(string) do
+  def convert({:ok, string}) do
     text = string
            |> capture_sections
            |> build_emphasis

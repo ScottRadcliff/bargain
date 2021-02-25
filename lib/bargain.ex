@@ -15,13 +15,24 @@ defmodule Bargain do
     cond do
       String.match?(text, ~r/^\#/)          -> create_heading(text)
       String.match?(text, ~r/^[[:alpha:]]/) -> create_paragaph(text)
+      String.match?(text, ~r/^>/)           -> create_blockquote(text) 
     end
   end
+
+  def create_blockquote(text) do
+    replaced = String.replace_prefix(text, "> ", "<blockquote>") 
+               |> String.replace_suffix("", "</blockquote>")
+    "<p>#{replaced}</p>"
+  end
   
+
   defp create_paragaph(text) do
-    "<p>#{elem(Hyperlink.convert(text),1)}</p>"
+    converted_text = Hyperlink.convert({:ok, text})
     |> Italics.convert
+    |> Bold.convert
     |> elem(1)
+
+    "<p>#{converted_text}</p>"
   end
 
   defp create_heading(text) do
