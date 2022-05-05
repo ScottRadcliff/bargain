@@ -1,4 +1,15 @@
 defmodule Hyperlink do
+  @moduledoc """
+  Convert markdown formatted as hyperlinks to text within <a href> html tags
+
+  Example:
+
+    Hyperlink.convert({:ok, "this is [a link](http://google.com) text"})
+    {:ok, "this is <a href='http://google.com'>a link</a> text"}
+  """
+
+
+
   # Given a string, look for a pattern of [text](url) and convert to
   # <a href=url>text</a>
   #

@@ -1,4 +1,12 @@
 defmodule Italics do
+  @moduledoc """
+  Convert markdown formatted as italicized to text within <em> html tags
+
+  Example:
+
+    Italics.convert({:ok, "this is _some_ text"})
+    {:ok, "this is <em>some</em> text"}
+  """
   def convert({:ok, string}) do
     text = string
            |> capture_sections

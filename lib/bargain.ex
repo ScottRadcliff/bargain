@@ -1,6 +1,11 @@
 defmodule Bargain do
   @moduledoc """
-  Documentation for `Bargain`.
+  The main entry point to for the application. It has one public function
+  that will take the string, parse it and return it.
+
+  Example:
+    Bargain.generate("# Heading\nand some more text")
+    {:ok, "<h1>Heading</h1><p>and some more text</p>"}
   """
 
   def generate(text) do

@@ -1,4 +1,13 @@
 defmodule Bold do
+  @moduledoc """
+  Convert markdown formatted as bold to text within <strong> html tags
+
+  Example:
+
+    Bold.convert({:ok, "this is **some** text"})
+    {:ok, "this is <strong>some</strong> text"}
+  """
+
   def convert({:ok, string}) do
     text = string
            |> capture_sections
