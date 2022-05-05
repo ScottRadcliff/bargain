@@ -4,7 +4,7 @@ defmodule Bargain do
   """
 
   def generate(text) do
-    parsed  = Enum.map(String.split(text, "\n"), fn x -> 
+    parsed  = Enum.map(String.split(text, ~r/(\n)+/), fn x -> 
       String.trim(x)
       |> parse
     end)
