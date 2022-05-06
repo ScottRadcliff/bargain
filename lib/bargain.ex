@@ -8,6 +8,7 @@ defmodule Bargain do
     {:ok, "<h1>Heading</h1><p>and some more text</p>"}
   """
 
+  @spec generate(String.t()) :: {atom(), String.t()}
   def generate(text) do
     parsed  = Enum.map(String.split(text, ~r/(\n)+/), fn x -> 
       String.trim(x)
@@ -16,6 +17,7 @@ defmodule Bargain do
     {:ok, Enum.join(parsed)}
   end
 
+  @spec parse(String.t()) :: String.t()
   defp parse(text) do
     cond do
       String.match?(text, ~r/^\#/)          -> create_heading(text)
@@ -24,6 +26,7 @@ defmodule Bargain do
     end
   end
 
+  @spec create_blockquote(String.t()) :: String.t()
   def create_blockquote(text) do
     replaced = String.replace_prefix(text, "> ", "<blockquote>") 
                |> String.replace_suffix("", "</blockquote>")
@@ -31,6 +34,7 @@ defmodule Bargain do
   end
   
 
+  @spec create_paragaph(String.t()) :: String.t()
   defp create_paragaph(text) do
     converted_text = Hyperlink.convert({:ok, text})
     |> Italics.convert
@@ -40,12 +44,14 @@ defmodule Bargain do
     "<p>#{converted_text}</p>"
   end
 
+  @spec create_heading(String.t()) :: String.t()
   defp create_heading(text) do
     [hd | tl] = heading_text(text)
     level = String.length(hd)
     "<h#{level}>#{Enum.join(tl, " ")}</h#{level}>"
   end
 
+  @spec heading_text(String.t()) :: list()
   defp heading_text(text) do
     String.trim(text)
     |> String.split
