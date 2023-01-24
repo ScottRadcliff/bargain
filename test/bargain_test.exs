@@ -44,6 +44,7 @@ defmodule BargainTest do
   end
 
   test "inline code" do
-    assert Bargain.generate("There is inline `code` here") == {:ok, "<p>There is inline <code>code</code> here</p>"}
+    assert Bargain.generate("There is inline `code\2` here") == {:ok, "<p>There is inline <code>code\2</code> here</p>"}
+    assert Bargain.generate("There is `def func()` here") == {:ok, "<p>There is <code>def func()</code> here</p>"}
   end
 end

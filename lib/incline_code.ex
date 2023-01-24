@@ -20,14 +20,20 @@ defmodule InlineCode do
       "<code>#{Enum.at(x, 1)}</code>"
     end)
   end
-  
 
   defp capture_sections(string) do
     Regex.scan(matcher(), string, global: true)
   end
 
+  # The matcher captures everything that contains
+  #  a-z
+  #  A-Z
+  #  0-9
+  #  \
+  #  (
+  #  )
   defp matcher do
-    ~r/`(?<text>[a-zA-Z0-9\s]+)`/
+    ~r/`(?<text>[a-zA-Z0-9\\\(\)\s]+)`/
   end
 end
 
