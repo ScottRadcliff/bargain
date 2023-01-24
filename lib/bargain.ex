@@ -39,6 +39,7 @@ defmodule Bargain do
     converted_text = Hyperlink.convert({:ok, text})
     |> Italics.convert
     |> Bold.convert
+    |> InlineCode.convert
     |> elem(1)
 
     "<p>#{converted_text}</p>"

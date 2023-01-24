@@ -42,4 +42,8 @@ defmodule BargainTest do
   test "blockquote" do
     assert Bargain.generate("> there is some text here") == {:ok, "<p><blockquote>there is some text here</blockquote></p>"}
   end
+
+  test "inline code" do
+    assert Bargain.generate("There is inline `code` here") == {:ok, "<p>There is inline <code>code</code> here</p>"}
+  end
 end
