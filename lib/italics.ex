@@ -36,6 +36,5 @@ defmodule Italics do
   defp matcher do
     ~r/_(?<text>[a-zA-Z0-9\s]+)_/
   end
- 
 end
 
