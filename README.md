@@ -13,7 +13,7 @@ Bargain is a Markdown parsing library for Elixir. It allows you to take markdown
 - [x] Italics
 - [x] Bold
 - [x] Block Quote
-- [ ] Inline Code
+- [x] Inline Code
 - [ ] Code Block
 - [ ] Horizontal Rules
 - [ ] Automatic Links
