@@ -20,3 +20,9 @@ Bargain is a Markdown parsing library for Elixir. It allows you to take markdown
 - [ ] Images
 
 
+**Fix**
+
+- [] Just a link as text `[some](link)`
+- [] trailing new line
+
+
