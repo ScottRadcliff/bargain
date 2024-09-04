@@ -1,4 +1,5 @@
 defmodule Bargain do
+  require Logger
   @moduledoc """
   The main entry point to for the application. It has one public function
   that will take the string, parse it and return it.
@@ -10,7 +11,8 @@ defmodule Bargain do
 
   @spec generate(String.t()) :: {atom(), String.t()}
   def generate(text) do
-    parsed  = Enum.map(String.split(text, ~r/(\n)+/), fn x -> 
+    {:ok, parsed_for_code} = Codeblock.convert(text)
+    parsed  = Enum.map(String.split(parsed_for_code, ~r/(\n)+/), fn x -> 
       String.trim(x)
       |> parse
     end)
@@ -23,8 +25,15 @@ defmodule Bargain do
       String.match?(text, ~r/^\#/)          -> create_heading(text)
       String.match?(text, ~r/^[[:alpha:]]/) -> create_paragaph(text)
       String.match?(text, ~r/^>/)           -> create_blockquote(text) 
+      String.match?(text, ~r/<[\/]?code>/)  -> create_codeblock(text) 
     end
   end
+
+
+  def create_codeblock(_text) do
+    Logger.info("Codeblock has already been created.")
+  end
+  
 
   @spec create_blockquote(String.t()) :: String.t()
   def create_blockquote(text) do
