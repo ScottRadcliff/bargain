@@ -12,9 +12,8 @@ defmodule Bargain do
   @spec generate(String.t()) :: {atom(), String.t()}
   def generate(text) do
     {:ok, parsed_for_code} = Codeblock.convert(text)
-    parsed  = Enum.map(String.split(parsed_for_code, ~r/(\n)+/), fn x -> 
-      String.trim(x)
-      |> parse
+    parsed  = Enum.map(String.trim(parsed_for_code) |> String.split(~r/(\n)+/), fn x -> 
+      parse(String.trim(x))
     end)
     {:ok, Enum.join(parsed)}
   end
@@ -25,15 +24,18 @@ defmodule Bargain do
       String.match?(text, ~r/^\#/)          -> create_heading(text)
       String.match?(text, ~r/^[[:alpha:]]/) -> create_paragaph(text)
       String.match?(text, ~r/^>/)           -> create_blockquote(text) 
+      String.match?(text, ~r/^---/)         -> create_horizontal_rule(text)
       String.match?(text, ~r/<[\/]?code>/)  -> create_codeblock(text) 
     end
   end
 
+  def create_horizontal_rule(_text) do
+    "<hr>"
+  end
 
   def create_codeblock(_text) do
     Logger.info("Codeblock has already been created.")
   end
-  
 
   @spec create_blockquote(String.t()) :: String.t()
   def create_blockquote(text) do
@@ -41,7 +43,6 @@ defmodule Bargain do
                |> String.replace_suffix("", "</blockquote>")
     "<p>#{replaced}</p>"
   end
-  
 
   @spec create_paragaph(String.t()) :: String.t()
   defp create_paragaph(text) do
