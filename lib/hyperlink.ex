@@ -31,6 +31,7 @@ defmodule Hyperlink do
   end
 
   defp capture_link_segments(markdown) do
+    IO.inspect(Regex.scan(matcher(), markdown), label: "")
     Regex.scan(matcher(), markdown)
   end
 
@@ -41,7 +42,7 @@ defmodule Hyperlink do
   end 
 
   defp matcher do
-    ~r/\[(?<text>[\w\.?\s]+)\]\((?<url>http[s]?\:\/\/\w+[\.\w+]+\w+)\)/
+    ~r/\[(?<text>[\w\.?\s]+)\]\((?<url>http[s]?\:\/\/\w+[\.\w+]+\w+)\)/i
   end
   
 end

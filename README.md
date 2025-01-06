@@ -25,6 +25,11 @@ Bargain is a Markdown parsing library for Elixir. It allows you to take markdown
 
 - [] Just a link as text `[some](link)`
 - [] trailing new line
+- [] syntax type and returns in code blocks. 
+example: ```bash
+  swarms help
+```
+- [] Links in the middle of a paragraph, ex: For more documentation on the CLI [CLICK HERE](https://docs.swarms.world/en/latest/swarms/cli/main/)
 
 
 
