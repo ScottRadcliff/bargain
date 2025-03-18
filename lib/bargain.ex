@@ -21,10 +21,11 @@ defmodule Bargain do
   @spec parse(String.t()) :: String.t()
   defp parse(text) do
     cond do
-      String.match?(text, ~r/^\#/)          -> create_heading(text)
-      String.match?(text, ~r/^[[:alpha:]]/) -> create_paragaph(text)
-      String.match?(text, ~r/^>/)           -> create_blockquote(text) 
-      String.match?(text, ~r/^---/)         -> create_horizontal_rule(text)
+      String.match?(text, ~r/^\#/)            -> create_heading(text)
+      String.match?(text, ~r/^[[:alpha:]]/)   -> create_paragaph(text)
+      String.match?(text, ~r/^\[.+\]/)        -> create_paragaph(text)
+      String.match?(text, ~r/^>/)             -> create_blockquote(text) 
+      String.match?(text, ~r/^---/)           -> create_horizontal_rule(text)
       # String.match?(text, ~r/<[\/]?code>/)  -> create_codeblock(text) 
       true -> text
     end

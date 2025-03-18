@@ -31,7 +31,6 @@ defmodule Hyperlink do
   end
 
   defp capture_link_segments(markdown) do
-    IO.inspect(Regex.scan(matcher(), markdown), label: "")
     Regex.scan(matcher(), markdown)
   end
 
