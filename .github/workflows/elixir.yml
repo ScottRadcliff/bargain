@@ -3,12 +3,12 @@ name: Elixir Test Suite
 on:
   push:
     branches:
-      - main
+      - master
       - develop
   pull_request:
     branches:
-      - main
-      - develop
+      - master
+      
 
 jobs:
   test:
