@@ -33,6 +33,7 @@ example: ```bash
 
 
 
+
 Horizontal Rule
 
 When a chuck of text, thought of as a paragraph comes in, if it starts with "---", insert <hr>
