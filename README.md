@@ -30,7 +30,13 @@ example: ```bash
   swarms help
 ```
 - [] Links in the middle of a paragraph, ex: For more documentation on the CLI [CLICK HERE](https://docs.swarms.world/en/latest/swarms/cli/main/)
+- [] links with formatting
 
+```
+ - **High-performance**. Build scalable applications with minimal runtime overhead.
+ - **Type-safe**. Use the full power of the Scala compiler to catch bugs at compile time.
+ - **Concurrent**. Easily build concurrent apps without deadlocks, race conditions, or complexity.
+```
 
 
 
