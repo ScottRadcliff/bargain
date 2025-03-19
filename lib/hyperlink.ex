@@ -16,6 +16,7 @@ defmodule Hyperlink do
   # Takes a string, converts markdown to HTML link
   # syntax and returns the string
   def convert({:ok, string}) do
+    IO.inspect(capture_link_segments(string), label: "XXXXX")
     links = capture_link_segments(string)
            |> build_link
 
@@ -41,7 +42,7 @@ defmodule Hyperlink do
   end 
 
   defp matcher do
-    ~r/\[(?<text>[\w\.?\s]+)\]\((?<url>http[s]?\:\/\/\w+[\.\w+]+\w+)\)/i
+    ~r/\[(?<text>[\w\.?\-\s]+)\]\((?<url>http[s]?\:\/\/\w+[\.\w+]+\w+)\)/i
   end
   
 end

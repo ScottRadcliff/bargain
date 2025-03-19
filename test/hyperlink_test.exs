@@ -3,8 +3,8 @@ defmodule HyperlinkTest do
   doctest Hyperlink
 
   test "replace one link" do
-    test_string = "hello this is a [link](http://google.com)"
-    assert Hyperlink.convert({:ok, test_string}) ==  {:ok, "hello this is a <a href='http://google.com'>link</a>"}
+    test_string = "hello this is a, [link-test](http://google.com)"
+    assert Hyperlink.convert({:ok, test_string}) ==  {:ok, "hello this is a, <a href='http://google.com'>link-test</a>"}
   end
 
   test "replace multiple links" do
